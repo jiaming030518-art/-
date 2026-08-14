@@ -1,0 +1,6 @@
+# Local working files, downloads, and visual QA captures
+work/
+
+# Operating system files
+.DS_Store
+Thumbs.db
