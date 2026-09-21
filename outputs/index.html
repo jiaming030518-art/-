@@ -7,7 +7,7 @@
   <title>YOFER | Innovative Body Kit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{--ink:#11120f;--muted:#6c6d67;--line:#e4e5df;--paper:#fbfbf8;--accent:#d9ff3f;--soft:#f1f2ea;--max:1240px}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}img{display:block;width:100%;object-fit:cover}.mono{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}.container{width:min(var(--max),calc(100% - 48px));margin:0 auto}
@@ -33,15 +33,372 @@
     .portrait{padding:0;overflow:hidden;background:#171814}.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 48%}.contact-person{grid-column:1/-1;display:grid;grid-template-columns:145px 1fr;min-height:145px;background:var(--ink);color:#fff;overflow:hidden}.contact-person img{width:100%;height:145px;object-fit:cover;object-position:center 47%}.contact-person-copy{padding:19px 20px;display:flex;flex-direction:column;justify-content:center}.contact-person-copy span{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-size:.6rem}.contact-person-copy strong{font-size:1.05rem;letter-spacing:-.035em;margin:7px 0 2px}.contact-person-copy small{color:rgba(255,255,255,.62);font-size:.68rem}@media(max-width:560px){.contact-person{grid-template-columns:110px 1fr;min-height:120px}.contact-person img{height:120px}.contact-person-copy{padding:15px}}
     /* Desktop hero composition: reserve the left side for copy and move the car to the right. */
     @media(min-width:901px){.hero-slide img{position:relative;left:11%;width:100%;max-width:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 100%)}.hero-slide:after{background:linear-gradient(90deg,rgba(9,10,8,.9) 0%,rgba(9,10,8,.72) 37%,rgba(9,10,8,.08) 74%)}.hero-copy{left:6%;max-width:440px}.hero-copy h1{font-size:clamp(2.8rem,5.15vw,5.05rem);max-width:440px}.hero-copy p{max-width:350px}.hero-controls{left:6%}}
+
+    /* Visual system polish: spacious, automotive-focused and deliberately restrained. */
+    :root{--ink:#10110e;--ink-raised:#181a15;--paper:#fcfcf9;--soft:#f0f1e9;--accent:#d9ff3f;--accent-soft:#efffb8;--shadow:0 24px 58px rgba(17,18,15,.12)}
+    ::selection{background:var(--accent);color:var(--ink)}
+    body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    a,button{transition:color .2s ease,background-color .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+    :where(a,button,input[type="range"]):focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+    .topbar{background:#0b0c0a;border-bottom:1px solid rgba(255,255,255,.12)}
+    .topbar span,.topbar a{letter-spacing:.025em}
+    .site-header{background:rgba(16,17,14,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .nav{height:80px}
+    .nav-links{gap:30px;font-size:.8rem}
+    .nav-links>a,.catalog-trigger{color:rgba(255,255,255,.84)}
+    .nav-links>a:hover,.catalog-trigger:hover{color:#fff}
+    .whatsapp-btn,.button-primary{min-height:44px;padding:12px 18px;font-weight:700;letter-spacing:.01em}
+    .button-secondary{min-height:42px;font-weight:700}
+    .button-secondary:hover{box-shadow:0 8px 0 var(--accent)}
+    .catalog-menu{border-color:rgba(17,18,15,.18);box-shadow:var(--shadow)}
+    .catalog-brand{min-height:108px}
+
+    .hero{padding-top:24px}
+    .hero-frame{min-height:690px;border:1px solid rgba(17,18,15,.14);box-shadow:var(--shadow);background:#1c1e19}
+    .hero-slide img{height:690px;filter:saturate(.76) contrast(1.035)}
+    .hero-copy{max-width:410px}
+    .hero-copy .eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:20px;color:var(--accent);font-size:.68rem}
+    .hero-copy .eyebrow:before{content:"";width:24px;height:1px;background:currentColor}
+    .hero-copy p{font-size:.94rem;line-height:1.65;color:rgba(255,255,255,.84)}
+    .hero-meta{margin:26px 0 24px}
+    .tag{background:rgba(10,11,9,.2);backdrop-filter:blur(6px)}
+    .hero-controls{bottom:26px}
+    .hero-arrow{width:44px;height:44px;border-color:rgba(255,255,255,.46)}
+    .dot{height:2px;transition:background-color .2s ease,transform .2s ease}
+    .dot.active{transform:scaleX(1.18);transform-origin:left}
+    .hero-note{right:4%;bottom:28px;letter-spacing:.03em}
+
+    section{padding:126px 0}
+    .section-head{margin-bottom:50px}
+    .section-head h2{letter-spacing:-.07em}
+    .intro-grid{gap:clamp(42px,6vw,88px)}
+    .intro-statement{line-height:1.02}
+    .stat-row{gap:clamp(22px,3vw,42px)}
+    .stat strong{font-size:2.1rem}
+
+    .featured{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f1f2ea 0%,#eceee3 100%)}
+    #featuredModels{grid-template-columns:1fr}
+    #featuredModels .model-card{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);min-height:460px;background:var(--ink);color:#fff;border:1px solid var(--ink);box-shadow:var(--shadow)}
+    #featuredModels .model-card:hover{border-color:var(--ink);transform:translateY(-5px)}
+    #featuredModels .model-card img{order:2;height:100%;min-height:460px;object-position:center;filter:saturate(.8);transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .35s ease}
+    #featuredModels .model-card:hover img{transform:scale(1.035);filter:saturate(1)}
+    #featuredModels .model-card-body{order:1;display:flex;flex-direction:column;padding:clamp(34px,5vw,68px);background:linear-gradient(145deg,#11120f 0%,#1d1f1a 100%)}
+    #featuredModels .model-card-body .mono{color:var(--accent);font-size:.68rem}
+    #featuredModels .model-card-body h3{max-width:410px;margin:18px 0 13px;font-size:clamp(2.15rem,4.1vw,4.2rem);line-height:.93;letter-spacing:-.075em}
+    #featuredModels .model-card-body>p:not(.mono){max-width:320px;color:rgba(255,255,255,.62);font-size:.82rem;line-height:1.6}
+    #featuredModels .card-link{width:100%;justify-content:space-between;align-items:center;margin-top:auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.22);color:#fff;font-weight:700;text-decoration:none}
+    #featuredModels .card-link:hover{color:var(--accent)}
+    #catalogModels{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .model-card{border-color:rgba(17,18,15,.08);box-shadow:0 1px 0 rgba(17,18,15,.04)}
+    .model-card:hover{box-shadow:0 18px 36px rgba(17,18,15,.12)}
+
+    .kit-overview{background:#0f100e}
+    .kit-overview .section-head{align-items:flex-start}
+    .compare-shell{border:1px solid rgba(255,255,255,.18);box-shadow:0 18px 42px rgba(0,0,0,.2)}
+    .compare-handle{width:50px;height:50px;border:4px solid rgba(16,17,14,.16);box-shadow:0 7px 20px rgba(0,0,0,.28)}
+    .compare-label{letter-spacing:.055em}
+    .kit-caption{letter-spacing:.025em}
+
+    .adv{position:relative;min-height:172px;padding:30px;overflow:hidden;transition:background-color .25s ease,color .25s ease,transform .25s ease}
+    .adv:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .25s ease}
+    .adv h3{margin-top:35px;font-size:1.12rem}
+    .adv:hover{background:var(--ink);color:#fff}
+    .adv:hover:before{transform:scaleY(1)}
+    .adv:hover .adv-num,.adv:hover p{color:rgba(255,255,255,.63)}
+
+    .company-band{background:linear-gradient(135deg,#eaecdf 0%,#e3e6d8 100%)}
+    .company-grid{gap:clamp(42px,7vw,100px)}
+    .company-facts{margin-top:30px}
+    .fact{padding:19px 0}
+    .world-map.market-map{box-shadow:0 14px 28px rgba(17,18,15,.08)}
+    .country{border-radius:0}
+    .market-card{border:1px solid rgba(255,255,255,.14)}
+
+    .person-grid{gap:clamp(36px,5vw,70px);align-items:center}
+    .portrait{border:1px solid rgba(17,18,15,.15);box-shadow:var(--shadow)}
+    .person-grid h2{max-width:780px}
+    .role{padding-left:14px;border-left:3px solid var(--accent)}
+
+    .contact-band{position:relative;overflow:hidden;background-color:var(--accent);background-image:radial-gradient(rgba(16,17,14,.15) 1px,transparent 1px);background-size:15px 15px}
+    .contact-band .container{position:relative}
+    .contact-links{gap:12px}
+    .contact-link{min-height:64px;padding:18px 21px;box-shadow:0 1px 0 rgba(17,18,15,.1)}
+    .contact-link:hover{background:#fff;border-color:var(--ink);transform:translateX(5px);box-shadow:0 8px 0 rgba(17,18,15,.16)}
+    .floating-wa{width:62px;height:62px;border:3px solid var(--paper);box-shadow:0 12px 30px rgba(17,18,15,.2)}
+    footer{padding:38px 0}
+    .footer-row{font-size:.72rem}
+
+    @media(min-width:901px){
+      .hero-slide img{left:15%;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 11%,#000 100%);mask-image:linear-gradient(90deg,transparent 0,#000 11%,#000 100%)}
+      .hero-slide:after{background:linear-gradient(90deg,rgba(8,9,7,.94) 0%,rgba(8,9,7,.84) 34%,rgba(8,9,7,.34) 54%,rgba(8,9,7,.04) 74%)}
+      .hero-copy{left:6%;max-width:390px}
+      .hero-copy h1{max-width:390px;font-size:clamp(3.1rem,4.5vw,4.6rem);line-height:.94}
+      .hero-copy p{max-width:330px}
+      .hero-controls{left:6%}
+    }
+    @media(max-width:900px){
+      .nav{height:70px}
+      .menu-toggle{display:grid!important;width:44px;height:44px;border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.06);font-size:0}
+      .menu-toggle:before{content:"";width:17px;height:2px;background:#fff;box-shadow:0 -6px 0 #fff,0 6px 0 #fff}
+      .hero-frame,.hero-slide img{min-height:620px;height:620px}
+      .hero-copy{max-width:470px}
+      .hero-note{right:5%;bottom:24px}
+      #featuredModels .model-card{grid-template-columns:1fr}
+      #featuredModels .model-card img{order:1;min-height:330px;height:330px}
+      #featuredModels .model-card-body{order:2;min-height:320px}
+    }
+    @media(max-width:560px){
+      section{padding:88px 0}
+      .hero-frame,.hero-slide img{min-height:620px;height:620px}
+      .hero-copy{left:7%;right:auto;bottom:86px;top:auto;width:86%;max-width:none;transform:none}
+      .hero-copy h1{max-width:100%;font-size:clamp(2.15rem,9vw,2.65rem);line-height:.96;letter-spacing:-.075em}
+      .hero-copy p{max-width:315px;font-size:.88rem}
+      .hero-note{display:none}
+      .hero-controls{left:7%;bottom:22px}
+      .section-head{margin-bottom:34px}
+      #featuredModels .model-card img{min-height:250px;height:250px}
+      #featuredModels .model-card-body{min-height:300px;padding:31px 27px}
+      #featuredModels .model-card-body h3{font-size:2.7rem}
+      .adv{min-height:148px;padding:25px}
+      .contact-link{min-height:60px;padding:15px 16px}
+      .contact-link:hover{transform:none;box-shadow:none}
+    }
+    /* Maintainable catalog presentation: real-detail models remain distinct from model listings. */
+    .catalog-models button,.catalog-model-item{display:block;width:100%;padding:8px 0;border-bottom:1px solid rgba(17,18,15,.1);font-size:.72rem;line-height:1.35;text-align:left}
+    .catalog-models button{color:var(--ink)}
+    .catalog-model-item{color:var(--muted);cursor:default}
+    .catalog-models button:last-child,.catalog-model-item:last-child{border-bottom:0}
+    .catalog-models button span{float:right;color:var(--muted)}
+    #catalogModels{grid-template-columns:repeat(auto-fit,minmax(340px,1fr));align-items:start;gap:16px}
+    .brand-catalog-card{border:1px solid rgba(17,18,15,.12);background:#fff;box-shadow:0 1px 0 rgba(17,18,15,.04);overflow:hidden}
+    .brand-catalog-head{padding:24px 24px 19px;background:linear-gradient(135deg,#f2f3eb 0%,#e9ece0 100%);border-bottom:1px solid rgba(17,18,15,.12)}
+    .brand-catalog-head .mono{margin:0;color:var(--muted);font-size:.62rem}
+    .brand-catalog-head h3{margin:10px 0 6px;font-size:1.55rem;line-height:1;letter-spacing:-.055em}
+    .brand-catalog-head>span{font-size:.7rem;color:var(--muted)}
+    .brand-catalog-list{display:grid;padding:8px 24px 14px}
+    .brand-catalog-model{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:11px 0;border-bottom:1px solid var(--line);color:var(--ink)}
+    .brand-catalog-model:last-child{border-bottom:0}
+    .brand-catalog-model>span{display:grid;gap:2px;min-width:0}
+    .brand-catalog-model strong{font-size:.83rem;font-weight:700;letter-spacing:-.02em}
+    .brand-catalog-model small{font-size:.68rem;color:var(--muted)}
+    .brand-catalog-model.ready{margin:6px -10px;padding:12px 10px;border-color:transparent;background:var(--ink);color:#fff;transition:transform .2s ease,box-shadow .2s ease}
+    .brand-catalog-model.ready small{color:rgba(255,255,255,.62)}
+    .brand-catalog-model.ready b{font-size:.66rem;color:var(--accent);white-space:nowrap}
+    .brand-catalog-model.ready:hover{transform:translateX(4px);box-shadow:0 8px 16px rgba(17,18,15,.16)}
+    @media(max-width:560px){
+      #catalogModels{grid-template-columns:1fr}
+      .brand-catalog-head{padding:22px 20px 18px}
+      .brand-catalog-list{padding:8px 20px 14px}
+    }
+    /* Premium dark product-catalog menu with clear text contrast. */
+    .catalog-shell{position:relative;display:flex;align-items:stretch;flex:0 0 auto}
+    .catalog-menu{top:79px;width:min(960px,calc(100vw - 32px));padding:12px;gap:12px;background:#0e0f0c;color:#fff;border:1px solid rgba(217,255,63,.42);box-shadow:0 26px 70px rgba(0,0,0,.42)}
+    .catalog-brand{position:relative;min-height:94px;padding:20px;background:linear-gradient(135deg,#1b1d18 0%,#12130f 100%);border:1px solid rgba(255,255,255,.13);color:#fff;overflow:hidden;cursor:pointer;touch-action:manipulation;transition:transform .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease}
+    .catalog-brand:before{content:"";position:absolute;top:0;left:0;width:26px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+    .catalog-brand h4{position:relative;z-index:1;margin:0;color:#fff;font-size:1rem;letter-spacing:-.025em}
+    .catalog-brand:hover,.catalog-brand.active{background:linear-gradient(135deg,#272b20 0%,#171913 100%);border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.23)}
+    .catalog-brand:hover:before,.catalog-brand.active:before{transform:scaleX(1)}
+    .catalog-brand.active{box-shadow:0 14px 28px rgba(0,0,0,.3)}
+    .catalog-brand.active .catalog-models{position:relative;z-index:1;gap:0;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.17)}
+    .catalog-models button,.catalog-model-item{border-bottom-color:rgba(255,255,255,.15);color:rgba(255,255,255,.76);font-size:.73rem}
+    .catalog-models button{color:#fff}
+    .catalog-model-item{color:rgba(255,255,255,.72)}
+    .catalog-models button span{color:var(--accent)}
+    .catalog-models button:hover{padding-left:6px;border-bottom-color:rgba(217,255,63,.55);color:var(--accent);text-decoration:none}
+    @media(min-width:901px){.catalog-menu{top:calc(100% - 1px);z-index:30}}
+    @media(max-width:900px){.catalog-menu{top:69px;grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:560px){.catalog-menu{grid-template-columns:1fr;padding:10px}.catalog-brand{padding:17px;min-height:76px}}
+    /* Vector reconstruction of the original YOFER lockup: no raster logo dependency. */
+    .yofer-symbol-defs{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+    .brand.yofer-lockup{display:flex;align-items:center;width:170px;height:44px;overflow:visible;color:#fff}
+    .yofer-wordmark{display:block;width:100%;height:auto}
+    .contact-logo{position:relative;display:flex;align-items:center;justify-content:center;height:104px;background:#0e0f0c;border:1px solid rgba(255,255,255,.16);color:#fff}
+    .contact-logo .yofer-wordmark{width:min(300px,86%);height:auto}
+    .contact-wordmark-name,.contact-wordmark-tagline{display:none}
+    /* Full vehicle gallery for model detail pages. */
+    .style-gallery{margin-bottom:26px}.style-gallery-stage{position:relative;aspect-ratio:3/2;overflow:hidden;background:#eef0ef}.style-gallery-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;transition:opacity .38s ease}.style-gallery-slide.active{opacity:1;pointer-events:auto}.style-gallery-control{position:absolute;top:50%;z-index:2;width:48px;height:48px;display:grid;place-items:center;transform:translateY(-50%);border:1px solid rgba(255,255,255,.62);background:rgba(17,18,15,.78);color:#fff;font-size:1.45rem;line-height:1;transition:background .2s ease,color .2s ease,transform .2s ease}.style-gallery-control:hover{background:var(--accent);color:var(--ink)}.style-gallery-control:active{transform:translateY(-50%) scale(.96)}.style-gallery-control.prev{left:16px}.style-gallery-control.next{right:16px}.style-gallery-meta{position:absolute;z-index:2;right:16px;bottom:14px;padding:7px 9px;background:rgba(17,18,15,.76);color:#fff;font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.08em}.style-gallery-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:12px}.style-gallery-caption{color:var(--muted);font-size:.74rem}.style-gallery-dots{display:flex;align-items:center;gap:7px}.style-gallery-dot{width:28px;height:28px;display:grid;place-items:center}.style-gallery-dot:before{content:"";width:18px;height:2px;background:#c7cac3;transition:background .2s ease,width .2s ease}.style-gallery-dot.active:before{width:24px;background:var(--ink)}.style-gallery:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+    @media(max-width:560px){.style-gallery-stage{min-height:0;max-height:none}.style-gallery-control{width:44px;height:44px}.style-gallery-control.prev{left:10px}.style-gallery-control.next{right:10px}.style-gallery-meta{right:10px;bottom:10px}.style-gallery-nav{gap:10px}.style-gallery-caption{font-size:.68rem}.style-gallery-dot{width:24px;height:28px}.style-gallery-dot:before{width:14px}.style-gallery-dot.active:before{width:18px}}
+    @media(max-width:560px){.brand.yofer-lockup{width:145px;height:40px}.contact-logo{height:94px}.contact-logo .yofer-wordmark{width:min(250px,86%)}}
+    /* 2026 visual refresh: cold-luxury automotive editorial system. */
+    :root{--ink:#0d0f0e;--ink-raised:#171a18;--muted:#626967;--line:#d9ddda;--paper:#f8f9f8;--soft:#edf0ee;--accent:#cfff2e;--accent-soft:#eaff9f;--max:1280px;--shadow:0 22px 60px rgba(18,25,22,.1)}
+    *{letter-spacing:0!important}
+    body{background:var(--paper)}
+    section{padding:120px 0}
+    .container{width:min(var(--max),calc(100% - 64px))}
+    .topbar{height:30px;background:#090b0a}
+    .site-header{background:rgba(13,15,14,.97)}
+    .nav{height:72px}
+    .nav-links>a,.catalog-trigger{padding:25px 0}
+    .nav-links>a:after,.catalog-trigger:after{bottom:17px;background:var(--accent)}
+    .whatsapp-btn:hover{background:var(--accent);transform:translateY(-1px)}
+    .button-primary:active,.button-secondary:active,.whatsapp-btn:active,.contact-link:active{transform:scale(.98)}
+
+    .hero{padding:20px 0 0}
+    .hero-frame{height:710px;min-height:710px;background:var(--ink);border:0;box-shadow:var(--shadow)}
+    .hero-slide{display:grid;grid-template-rows:310px 400px;background:var(--ink)}
+    .hero-slide:after{display:none}
+    .hero-slide img{position:relative!important;grid-row:2;width:100%!important;height:400px!important;left:auto!important;object-fit:cover;object-position:center 58%;filter:saturate(.78) contrast(1.04);-webkit-mask-image:none!important;mask-image:none!important}
+    .hero-copy{position:relative;grid-row:1;z-index:1;left:auto!important;top:auto;transform:none;align-self:center;width:100%;max-width:none!important;padding:36px clamp(42px,5vw,72px);color:#fff}
+    .hero-copy .eyebrow{margin:0 0 16px}
+    .hero-copy h1{max-width:1120px!important;margin:0 0 17px;font-size:3.4rem!important;line-height:1.02;text-wrap:balance}
+    .hero-copy p{max-width:690px;font-size:.92rem;line-height:1.55}
+    .hero-meta,.hero-note{display:none}
+    .hero-copy .button-primary{position:absolute;right:clamp(42px,5vw,72px);bottom:40px;background:#fff;color:var(--ink)}
+    .hero-copy .button-primary:hover{background:var(--accent);color:var(--ink)}
+    .hero-controls{left:auto;right:26px;bottom:26px}
+    .hero-arrow{background:rgba(13,15,14,.72);backdrop-filter:blur(8px)}
+
+    .section-head{display:block;max-width:780px;margin-bottom:48px}
+    .section-head>p{max-width:620px;margin-top:20px;font-size:.92rem;line-height:1.65}
+    .section-head>a{margin-top:24px}
+    .section-head h2{font-size:3.25rem;line-height:1.02}
+    .intro-grid{grid-template-columns:1.25fr .75fr;align-items:end}
+    .intro-statement{font-size:2.9rem;line-height:1.04}
+    .stat strong{font-size:2rem}
+
+    .featured{background:var(--soft);border-color:var(--line)}
+    #featuredModels .model-card{grid-template-columns:.78fr 1.22fr;background:var(--ink);box-shadow:none}
+    #featuredModels .model-card-body{background:var(--ink)}
+    #featuredModels .model-card-body h3{font-size:3.5rem;line-height:.98}
+    #featuredModels .model-card img{filter:saturate(.82) contrast(1.025)}
+    #featuredModels .model-card:hover{box-shadow:0 24px 52px rgba(18,25,22,.14)}
+
+    .kit-overview{background:var(--paper);color:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .kit-overview .section-head p{color:var(--muted)}
+    .kit-overview .mono{color:var(--muted)!important}
+    .compare-shell{border-color:var(--line);box-shadow:none}
+    .kit-caption{color:var(--muted)}
+
+    .adv-grid{grid-template-columns:repeat(12,minmax(0,1fr));border-color:var(--line)}
+    .adv{min-height:190px;padding:32px;border-color:var(--line)}
+    .adv:nth-child(1){grid-column:span 7;background:#e9edeb}.adv:nth-child(2){grid-column:span 5;background:var(--ink);color:#fff}.adv:nth-child(2) p{color:rgba(255,255,255,.64)}.adv:nth-child(3){grid-column:span 5}.adv:nth-child(4){grid-column:span 7;background:#e9edeb}.adv:nth-child(5),.adv:nth-child(6){grid-column:span 6}.adv:nth-child(5){background:var(--accent-soft)}
+    .adv-num{display:none}
+    .adv h3{margin-top:0;font-size:1.08rem;line-height:1.35}
+    .adv:hover{transform:translateY(-2px)}
+    .company-band{background:#e9edeb}
+    .company-grid h2{font-size:4rem;line-height:.98}
+    .world-map.market-map{background:#e4e8e5;border-color:#ccd2ce;box-shadow:none}
+    .market-card{background:var(--ink)}
+    .country{background:#f6f8f6;border-color:#cbd1cd}
+
+    .person-grid{grid-template-columns:360px 1fr;align-items:start}
+    .portrait{aspect-ratio:4/5;box-shadow:none;background:var(--ink)}
+    .person-grid h2{font-size:3.65rem;line-height:1.02}
+    .person-grid>div:last-child>p:not(.mono):not(.role){font-size:.98rem;line-height:1.75}
+    .contact-band{background:#e9edeb;background-image:none;border-top:1px solid var(--line)}
+    .contact-grid h2{font-size:4rem;line-height:1}
+    .contact-link{background:#fff;box-shadow:none;border-color:var(--line)}
+    .contact-link:hover{box-shadow:6px 6px 0 var(--accent);transform:translate(-2px,-2px)}
+    .floating-wa{background:var(--accent);border-color:#fff}
+
+    .model-hero{padding:54px 0 52px;background:var(--ink)}
+    .model-hero-grid{grid-template-columns:.82fr 1.18fr;align-items:center;gap:54px}
+    .model-hero h1{font-size:4.5rem;line-height:.98}
+    .model-image{height:470px;overflow:hidden;background:#222623}
+    .model-image img{object-position:center 58%}
+    .style-gallery-stage{background:#e7ebe8}
+    .style-gallery-control{border-color:rgba(255,255,255,.5);background:rgba(13,15,14,.78)}
+    .component{background:#fff;border:1px solid var(--line)}
+    .component img{height:auto;aspect-ratio:4/3;object-fit:contain;background:#f0f2f0}
+    .component span{font-weight:700}
+    .detail-item{min-height:54px;align-items:center}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.75,.25,1),transform .7s cubic-bezier(.2,.75,.25,1)}
+    .reveal.is-visible{opacity:1;transform:none}
+
+    @media(max-width:900px){
+      .container{width:min(var(--max),calc(100% - 36px))}
+      section{padding:96px 0}
+      .hero-frame{height:680px;min-height:680px}
+      .hero-slide{grid-template-rows:350px 330px}
+      .hero-slide img{height:330px!important}
+      .hero-copy{padding:34px 36px}
+      .hero-copy h1{font-size:2.85rem!important}
+      .hero-copy .button-primary{position:static;margin-top:22px}
+      .section-head h2{font-size:2.75rem}
+      .intro-grid{grid-template-columns:1fr;align-items:start}
+      .intro-statement{font-size:2.35rem}
+      #featuredModels .model-card{grid-template-columns:1fr}
+      #featuredModels .model-card-body h3{font-size:3rem}
+      .company-grid h2,.contact-grid h2{font-size:3.25rem}
+      .person-grid{grid-template-columns:240px 1fr}
+      .person-grid h2{font-size:2.9rem}
+      .adv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .adv:nth-child(n){grid-column:span 1}
+      .model-hero-grid{grid-template-columns:1fr;gap:34px}
+      .model-hero h1{font-size:3.3rem}
+    }
+    @media(max-width:560px){
+      .container{width:calc(100% - 28px)}
+      section{padding:76px 0}
+      .topbar{height:28px}
+      .nav{height:64px}
+      .hero{padding-top:0}
+      .hero-frame{height:580px;min-height:580px}
+      .hero-slide{grid-template-rows:350px 230px}
+      .hero-slide img{height:230px!important;min-height:0!important;object-position:center 58%}
+      .hero-copy{left:auto;right:auto;bottom:auto;top:auto;width:100%;padding:30px 24px;transform:none}
+      .hero-copy .eyebrow{font-size:.62rem}
+      .hero-copy h1{font-size:2.18rem!important;line-height:1.04;margin-bottom:14px}
+      .hero-copy p{font-size:.8rem;line-height:1.5}
+      .hero-copy .button-primary{margin-top:18px}
+      .hero-controls{right:14px;bottom:14px}
+      .section-head{margin-bottom:32px}
+      .section-head h2{font-size:2.25rem;line-height:1.04}
+      .intro-statement{font-size:2rem}
+      .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+      .stat strong{font-size:1.35rem}
+      #featuredModels .model-card-body{min-height:270px;padding:28px 24px}
+      #featuredModels .model-card-body h3{font-size:2.4rem}
+      #featuredModels .model-card img{height:240px;min-height:240px}
+      .compare-shell,.kit-compare{height:300px}
+      .kit-caption{display:grid;gap:5px}
+      .adv{min-height:164px;padding:26px}
+      .adv-grid{grid-template-columns:1fr}
+      .company-grid h2,.contact-grid h2,.person-grid h2{font-size:2.5rem}
+      .person-grid{grid-template-columns:1fr}
+      .portrait{max-width:none;width:100%}
+      .contact-link{display:grid;gap:5px;align-items:start}
+      .contact-link:hover{transform:none;box-shadow:none}
+      .model-hero{padding:38px 0 42px}
+      .model-hero h1{font-size:2.2rem!important}
+      .model-image{height:280px}
+      .component-grid{gap:8px}
+    }
+    /* Unified comparison frame: keep every vehicle comparison the same size while
+       preserving the complete source image instead of cropping it to a wide strip. */
+    .compare-shell,.kit-compare{
+      width:88%;
+      height:auto;
+      min-height:0;
+      aspect-ratio:151/100;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .compare-shell>img,.compare-after img{
+      object-fit:contain;
+      background:#eef0ee;
+    }
+    @media(max-width:560px){
+      .compare-shell,.kit-compare{
+        width:100%;
+        aspect-ratio:151/100;
+      }
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+      .reveal{opacity:1;transform:none}
+    }
   </style>
 </head>
 <body>
+  <svg class="yofer-symbol-defs" aria-hidden="true" focusable="false"><symbol viewBox="0 0 746 166" id="yofer-wordmark"><path d="M 21.299 20.250 L 40.459 38.500 49.229 46.893 L 58 55.285 58 73.143 L 58 91 75 91 L 92 91 92 73.517 L 92 56.034 103.250 45.195 L 114.500 34.355 131.321 18.428 L 148.142 2.500 129.018 2.228 L 109.894 1.956 106.691 3.477 L 103.487 4.997 89.641 17.498 L 75.795 30 75.303 30 L 74.810 30 60.977 17.479 L 47.143 4.958 43.603 3.479 L 40.064 2 21.102 2 L 2.140 2 21.299 20.250 M 169.756 3.755 L 167.011 5.456 165.506 8.629 L 164 11.802 164.015 46.651 L 164.029 81.500 165.279 83.970 L 166.529 86.440 169.912 88.720 L 173.296 91 229.247 91 L 285.198 91 288.643 89.365 L 292.088 87.730 293.544 84.915 L 295 82.099 295 46.500 L 295 10.901 293.483 7.967 L 291.966 5.034 289.033 3.517 L 286.099 2 229.300 2.027 L 172.500 2.053 169.756 3.755 M 323.388 2.980 L 321.276 3.833 319.138 6.552 L 317 9.270 317 46.170 L 317 83.070 318.704 85.672 L 320.409 88.273 323.672 89.636 L 326.936 91 338.455 91 L 349.974 91 350.237 55.750 L 350.500 20.500 391.250 20.239 L 432 19.978 432 10.989 L 432 2 378.750 2.063 L 325.500 2.127 323.388 2.980 M 456.945 3.470 L 454.391 4.859 452.634 8.180 L 450.878 11.500 451.189 47.732 L 451.500 83.964 454.769 87.232 L 458.037 90.500 512.019 90.775 L 566 91.050 566 81.525 L 566 72 525.500 72 L 485 72 485 46 L 485 20 525.500 20 L 566 20 566 11 L 566 2 512.750 2.040 L 459.500 2.080 456.945 3.470 M 589 10.960 L 589 20 624.577 20 L 660.154 20 663.077 22.923 L 666 25.846 666 28.346 L 666 30.847 663.411 33.923 L 660.822 37 624.911 37 L 589 37 589 64 L 589 91 606 91 L 623 91 623 73.500 L 623 56 632.341 56 L 641.683 56 648.056 62.750 L 654.429 69.500 664.740 80.274 L 675.052 91.048 691.776 90.774 L 708.500 90.500 698.037 79.500 L 687.573 68.500 681.215 61.903 L 674.856 55.305 680.386 52.600 L 685.916 49.894 688.970 46.037 L 692.025 42.181 693.512 37.965 L 695 33.749 694.978 28.124 L 694.956 22.500 692.921 18 L 690.887 13.500 687.693 10.162 L 684.500 6.825 680.500 4.662 L 676.500 2.500 632.750 2.210 L 589 1.921 589 10.960 M 197.073 23.635 L 195 26.270 195 46.500 L 195 66.730 197.073 69.365 L 199.145 72 229.534 72 L 259.922 72 261.961 69.811 L 264 67.623 264 46.534 L 264 25.445 262.443 23.223 L 260.887 21 230.016 21 L 199.145 21 197.073 23.635 M 362 46.500 L 362 56 390.833 56 L 419.667 56 420.083 55.588 L 420.500 55.176 420.179 46.088 L 419.858 37 390.929 37 L 362 37 362 46.500 M 495 46.500 L 495 56 524.500 56 L 554 56 554 46.500 L 554 37 524.500 37 L 495 37 495 46.500 M 721.182 63.030 L 717.864 65.053 715.855 69.594 L 713.847 74.134 714.525 78.148 L 715.203 82.162 718.194 85.569 L 721.185 88.975 724.996 90.117 L 728.807 91.259 732.302 90.603 L 735.797 89.947 738.419 87.885 L 741.040 85.823 742.520 82.961 L 744 80.099 744 75.500 L 744 70.901 742.524 68.047 L 741.048 65.193 737.656 63.097 L 734.264 61 729.382 61.004 L 724.500 61.007 721.182 63.030 M 724.077 64.773 L 720.655 66.655 718.827 70.062 L 717 73.469 717 76.087 L 717 78.704 719.280 82.088 L 721.560 85.471 724.030 86.721 L 726.500 87.971 729.500 87.950 L 732.500 87.929 735 86.500 L 737.500 85.071 735.759 85.035 L 734.018 85 731.759 81.512 L 729.500 78.025 727.750 78.012 L 726 78 726 81.500 L 726 85 724.500 85 L 723 85 723 76 L 723 67 727.777 67 L 732.555 67 734.777 68.557 L 737 70.113 737 72.057 L 737 74 734.960 76.040 L 732.920 78.080 735.028 81.040 L 737.136 84 738.119 84 L 739.102 84 740.632 80.338 L 742.162 76.677 741.571 73.524 L 740.979 70.372 737.655 67.150 L 734.330 63.928 730.915 63.410 L 727.500 62.892 724.077 64.773 M 726.667 69.667 L 726 70.333 726 72.730 L 726 75.127 729.250 74.813 L 732.500 74.500 732.802 72.380 L 733.105 70.261 730.802 69.644 L 728.500 69.027 727.917 69.014 L 727.333 69 726.667 69.667 M 122 136 L 122 155 125.500 155 L 129 155 129 136 L 129 117 125.500 117 L 122 117 122 136 M 286 123 L 286 129 283.500 129 L 281 129 281 130.500 L 281 132 283.500 132 L 286 132 286 142.465 L 286 152.930 287.934 153.965 L 289.869 155 293.934 155 L 298 155 298 153.500 L 298 152 294.964 152 L 291.928 152 292.214 142.250 L 292.500 132.500 295.250 132.184 L 298 131.867 298 130.500 L 298 129.133 295.250 128.816 L 292.500 128.500 292.200 122.750 L 291.900 117 288.950 117 L 286 117 286 123 M 304.923 117.250 L 304.846 117.500 304.673 120.750 L 304.500 124 307.750 124 L 311 124 311 120.500 L 311 117 308 117 L 305 117 304.923 117.250 M 389 136 L 389 155 397.750 154.994 L 406.500 154.989 410.205 153.960 L 413.909 152.931 415.955 150.331 L 418 147.730 418 144.288 L 418 140.846 414.964 137.810 L 411.927 134.774 413.714 133.467 L 415.500 132.161 415.500 127.686 L 415.500 123.210 413.600 121.111 L 411.700 119.011 408.100 118.011 L 404.500 117.011 396.750 117.006 L 389 117 389 136 M 472 123.107 L 472 129.214 470.250 128.437 L 468.500 127.660 464.231 127.228 L 459.961 126.796 457.501 128.407 L 455.042 130.019 453.414 133.166 L 451.787 136.313 452.193 142.683 L 452.598 149.053 455.315 151.769 L 458.031 154.486 463.266 154.328 L 468.500 154.171 473.250 154.086 L 478 154 478 135.500 L 478 117 475 117 L 472 117 472 123.107 M 524 136 L 524 155 527.500 155 L 531 155 531.022 147.750 L 531.044 140.500 532.949 138.021 L 534.853 135.543 539.369 145.271 L 543.884 155 548.025 155 L 552.167 155 551.823 154.250 L 551.479 153.500 545.688 142.164 L 539.897 130.829 541.183 129.164 L 542.469 127.500 546.856 122.250 L 551.243 117 548.834 117 L 546.425 117 539.462 125.441 L 532.500 133.881 531.750 133.941 L 531 134 531 125.500 L 531 117 527.500 117 L 524 117 524 136 M 559 120.500 L 559 124 562 124 L 565 124 565 120.500 L 565 117 562 117 L 559 117 559 120.500 M 576.800 122.750 L 576.500 128.500 574.250 128.820 L 572 129.139 572 130.500 L 572 131.861 574.250 132.180 L 576.500 132.500 576.785 142.733 L 577.070 152.967 579.077 154.041 L 581.085 155.116 584.715 154.808 L 588.345 154.500 588.756 153.250 L 589.167 152 586.083 152 L 583 152 583 142 L 583 132 586 132 L 589 132 589 130.500 L 589 129 586 129 L 583 129 583 123 L 583 117 580.050 117 L 577.100 117 576.800 122.750 M 396 127.500 L 396 134 400.878 134 L 405.755 134 407.078 132.407 L 408.400 130.813 408.400 127.289 L 408.400 123.766 406.509 122.383 L 404.618 121 400.309 121 L 396 121 396 127.500 M 146.357 127.454 L 143.214 128.814 142.222 127.822 L 141.231 126.831 139.045 127.165 L 136.859 127.500 136.859 141 L 136.858 154.500 139.929 154.813 L 143 155.127 143 144.563 L 143 134 145 132 L 147 130 148.309 130 L 149.618 130 151.559 131.418 L 153.500 132.835 153.838 143.918 L 154.177 155 155.670 155 L 157.163 155 156.832 142.533 L 156.500 130.066 155 128.640 L 153.500 127.215 151.500 126.655 L 149.500 126.095 146.357 127.454 M 177.500 126.735 L 175.500 127.215 174.087 128.358 L 172.675 129.500 172.254 128.250 L 171.833 127 168.888 127 L 165.944 127 166.222 140.750 L 166.500 154.500 169.750 154.813 L 173 155.127 173 144.563 L 173 134 175 132 L 177 130 178.309 130 L 179.618 130 181.287 131.250 L 182.956 132.500 183.228 143.488 L 183.500 154.476 185.333 154.828 L 187.167 155.179 186.833 142.622 L 186.500 130.066 185 128.640 L 183.500 127.215 181.500 126.735 L 179.500 126.255 177.500 126.735 M 353.619 127.024 L 350.739 127.897 348.352 130.139 L 345.966 132.380 344.854 136.094 L 343.741 139.807 344.420 143.425 L 345.099 147.043 348.126 150.490 L 351.153 153.938 354.576 154.580 L 358 155.223 361.612 154.545 L 365.223 153.867 367.612 151.479 L 370 149.091 370 147.545 L 370 146 367.894 146 L 365.788 146 363.821 148.500 L 361.855 151 358.500 151 L 355.145 151 353.073 148.365 L 351 145.730 351 143.865 L 351 142 361.131 142 L 371.262 142 370.677 138.394 L 370.091 134.788 368.532 132.408 L 366.972 130.028 364.736 128.612 L 362.500 127.196 359.500 126.674 L 356.500 126.151 353.619 127.024 M 198.490 130.310 L 195.179 133.621 194.493 138.198 L 193.807 142.775 195.862 147.421 L 197.917 152.068 201.673 153.637 L 205.428 155.206 209.326 154.683 L 213.223 154.160 216.128 151.378 L 219.032 148.595 220.058 144.783 L 221.085 140.970 220.387 137.235 L 219.689 133.500 216.445 130.250 L 213.200 127 207.500 127 L 201.800 127 198.490 130.310 M 226.539 140.233 L 230.877 153.466 232.971 154.400 L 235.065 155.335 235.942 154.417 L 236.819 153.500 240.540 141.500 L 244.261 129.500 244.738 128.250 L 245.214 127 243.228 127 L 241.243 127 238.483 137.062 L 235.724 147.124 234.999 146.312 L 234.275 145.500 231.909 136.250 L 229.542 127 225.872 127 L 222.202 127 226.539 140.233 M 254.511 130.301 L 251.324 133.500 250.640 137.812 L 249.956 142.125 250.967 145.877 L 251.978 149.630 254.345 151.855 L 256.713 154.079 260.269 154.656 L 263.826 155.233 266.913 153.693 L 270 152.153 270 153.077 L 270 154 273 154 L 276 154 276 140.637 L 276 127.274 266.849 127.188 L 257.699 127.101 254.511 130.301 M 304.684 140.750 L 304.869 154.500 307.934 154.813 L 311 155.127 311 141.063 L 311 127 307.750 127 L 304.500 127 304.684 140.750 M 317 127.873 L 317 128.745 321.017 141.311 L 325.034 153.876 327.118 154.537 L 329.201 155.199 330.069 154.331 L 330.937 153.463 334.315 142.481 L 337.693 131.500 338.414 129.250 L 339.135 127 337.317 127.004 L 335.500 127.008 332.615 137.068 L 329.729 147.129 329.011 146.315 L 328.292 145.500 325.959 136.250 L 323.625 127 320.313 127 L 317 127 317 127.873 M 427.096 129.573 L 424.038 132.146 422.958 136.157 L 421.878 140.167 422.559 143.334 L 423.241 146.500 424.576 149.115 L 425.912 151.730 429.357 153.365 L 432.802 155 435.500 155 L 438.198 155 441.555 153.407 L 444.912 151.814 447.064 147.369 L 449.216 142.923 448.518 138.272 L 447.821 133.621 444.510 130.310 L 441.200 127 435.677 127 L 430.153 127 427.096 129.573 M 485.364 130.250 L 486.755 133.500 490.505 141.952 L 494.255 150.405 493.005 153.952 L 491.754 157.500 490.222 159.250 L 488.690 161 486.845 161 L 485 161 485 162.500 L 485 164 489.500 164 L 494 164 495.832 162.168 L 497.664 160.336 502.702 145.918 L 507.739 131.500 508.437 129.250 L 509.135 127 505.755 127 L 502.376 127 499.500 136 L 496.624 145 495.962 145 L 495.300 145 491.445 136 L 487.590 127 485.782 127 L 483.973 127 485.364 130.250 M 559 141 L 559 155 562 155 L 565 155 565 141 L 565 127 562 127 L 559 127 559 141 M 205.229 130.669 L 203.958 131.181 202.479 134.041 L 201 136.901 201.004 140.700 L 201.007 144.500 202.989 147.750 L 204.971 151 206.985 151 L 209 151 210.975 149.025 L 212.949 147.051 213.597 144.471 L 214.244 141.891 213.662 138.302 L 213.079 134.713 210.865 132.357 L 208.651 130 207.576 130.079 L 206.500 130.158 205.229 130.669 M 260.427 132.309 L 257.743 134.618 257.316 139.559 L 256.889 144.500 258.930 147.750 L 260.971 151 263.414 151 L 265.857 151 267.429 149.429 L 269 147.857 269.078 147.179 L 269.155 146.500 269.355 140.500 L 269.554 134.500 267.323 132.250 L 265.091 130 264.101 130 L 263.112 130 260.427 132.309 M 353.455 132.455 L 351 134.909 351 136.455 L 351 138 357.906 138 L 364.813 138 364.283 135.976 L 363.754 133.952 361.242 131.976 L 358.730 130 357.320 130 L 355.909 130 353.455 132.455 M 432.736 131.250 L 431.090 132.500 430.045 135.315 L 429 138.130 429.004 141.315 L 429.007 144.500 430.989 147.750 L 432.971 151 435.330 151 L 437.690 151 439.430 149.078 L 441.169 147.155 441.708 143.138 L 442.247 139.121 441.598 136.535 L 440.949 133.949 438.975 131.975 L 437 130 435.691 130 L 434.382 130 432.736 131.250 M 462.930 131.347 L 460.575 132.522 459.168 136.218 L 457.761 139.914 458.436 143.513 L 459.112 147.112 461.056 149.056 L 463 151 465.345 151 L 467.690 151 469.430 149.078 L 471.169 147.155 471.701 143.194 L 472.232 139.233 471.087 135.764 L 469.942 132.295 467.614 131.234 L 465.286 130.173 462.930 131.347 M 396.667 137.667 L 396 138.333 396 144.667 L 396 151 400.889 151 L 405.778 151 408.056 149.156 L 410.333 147.312 410.333 144 L 410.333 140.688 408.056 138.844 L 405.778 137 401.556 137 L 397.333 137 396.667 137.667 M 2 141 L 2 143 48.500 143 L 95 143 95 141 L 95 139 48.500 139 L 2 139 2 141 M 615 141 L 615 143 662 143 L 709 143 709 141 L 709 139 662 139 L 615 139 615 141" stroke="none" fill="currentColor" fill-rule="evenodd"/></symbol></svg>
   <div class="topbar"><div class="container"><span>YOFER / GUANGZHOU, CHINA / EST. 2017</span><a href="mailto:jiaming030518@gmail.com">jiaming030518@gmail.com ↗</a></div></div>
   <header class="site-header"><div class="container nav">
-    <a class="brand" href="#home" data-route="home" aria-label="YOFER home"><img src="assets/yofer-logo.jpg" alt="YOFER Innovative Body Kit"></a>
+    <a class="brand yofer-lockup" href="#home" data-route="home" aria-label="YOFER home"><svg class="yofer-wordmark" viewBox="0 0 746 166" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><use href="#yofer-wordmark"></use></svg></a>
     <nav class="nav-links">
       <a href="#home" data-route="home">Home</a>
-      <div style="position:relative"><button class="catalog-trigger" id="catalogTrigger">Product Catalog <span style="font-size:.65rem">⌄</span></button><div class="catalog-menu" id="catalogMenu"></div></div>
+      <div class="catalog-shell"><button class="catalog-trigger" id="catalogTrigger" type="button" aria-expanded="false" aria-controls="catalogMenu">Product Catalog <span style="font-size:.65rem">⌄</span></button><div class="catalog-menu" id="catalogMenu"></div></div>
       <a href="#about" data-route="about">About Me</a><a href="#company" data-route="company">Company</a><a href="#contact" data-route="contact">Contact</a>
     </nav>
     <div class="nav-actions"><button class="lang-btn" id="langBtn"><strong>EN</strong><span>/</span><span>中文</span></button><a class="whatsapp-btn" href="https://wa.me/8613059352142" target="_blank">WhatsApp ↗</a><button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button></div>
@@ -50,19 +407,19 @@
   <main>
     <div class="page-view active" id="homeView">
       <section class="hero"><div class="container"><div class="hero-frame" id="heroFrame"></div></div></section>
-      <section><div class="container"><div class="section-head"><div><p class="mono">01 / The brand</p><h2>Original design.<br>Global reach.</h2></div><p>YOFER creates model-specific automotive body kits with a clear point of view, then supports customers from first selection to shipment.</p></div><div class="intro-grid"><p class="intro-statement">A sharper silhouette for drivers who want their vehicle to feel unmistakably theirs.</p><div><p class="intro-copy">Our work combines original styling, reliable PP material and direct communication. No layers between you and the person managing your project.</p><div class="stat-row"><div class="stat"><strong>2017</strong><span>Founded</span></div><div class="stat"><strong>2,200 m²</strong><span>Factory</span></div><div class="stat"><strong>3,000 m²</strong><span>Warehouse</span></div></div></div></div></div></section>
-      <section class="featured"><div class="container"><div class="section-head"><div><p class="mono">02 / Select a model</p><h2>Featured catalog</h2></div><a class="button-secondary" href="#catalog" data-route="catalog">View full catalog ↗</a></div><div class="model-grid" id="featuredModels"></div></div></section>
-      <section class="kit-overview"><div class="container"><div class="section-head"><div><p class="mono" style="color:var(--accent)">03 / Before & After</p><h2>See the stance change.</h2></div><p>Drag across the image to compare the Tesla Model Y Juniper 2025+ before and after the YOFER Dragon Flame PRO installation.</p></div><div class="compare-shell kit-compare"><img src="assets/model-y-before.png" alt="Tesla Model Y Juniper before YOFER body kit installation"><div class="compare-after" id="compareAfter"><img src="assets/model-y-after.jpg" alt="Tesla Model Y Juniper after YOFER body kit installation"></div><span class="compare-label after">AFTER / YOFER KIT</span><span class="compare-label before">BEFORE / STOCK</span><input class="compare-range" id="compareRange" type="range" min="10" max="90" value="52" aria-label="Compare before and after images"><span class="compare-handle" id="compareHandle">↔</span></div><div class="kit-caption"><span>Drag to compare</span><span>Model Y Juniper 2025+ · Dragon Flame PRO</span></div></div></section>
-      <section><div class="container"><div class="section-head"><div><p class="mono">04 / Why YOFER</p><h2>Built for a direct<br>conversation.</h2></div><p>Every project stays close to the details that matter: shape, fitment, packaging and timing.</p></div><div class="adv-grid"><div class="adv"><span class="adv-num">01</span><h3>Professional Exterior Design</h3><p>Original styling developed around each model’s proportions.</p></div><div class="adv"><span class="adv-num">02</span><h3>PP Material</h3><p>Durable, practical material for everyday road use.</p></div><div class="adv"><span class="adv-num">03</span><h3>Model-specific Fitment</h3><p>Designed around exact model generations and body lines.</p></div><div class="adv"><span class="adv-num">04</span><h3>Multiple Styling Options</h3><p>Choose a complete look or individual components.</p></div><div class="adv"><span class="adv-num">05</span><h3>Global Export Experience</h3><p>Packaging and shipment support for international markets.</p></div><div class="adv"><span class="adv-num">06</span><h3>Direct Sales Support</h3><p>Chenjiaming stays close from selection to delivery.</p></div></div></div></section>
-      <section class="company-band"><div class="container"><div class="company-grid"><div><p class="mono">05 / Company</p><h2>Designed in Guangzhou.<br>Delivered worldwide.</h2></div><div><p class="company-copy">YOFER is an original-design automotive body kit company based in Guangzhou, China. We support product development, production, warehousing and export with a compact, responsive team.</p><div class="company-facts"><div class="fact"><strong>PP</strong><span>Main material</span></div><div class="fact"><strong>20+</strong><span>Export markets</span></div><div class="fact"><strong>2017</strong><span>Established</span></div><div class="fact"><strong>Direct</strong><span>Sales support</span></div></div></div></div><div class="export-wrap"><div class="world-map" aria-label="Export market map"><span class="map-dot" style="left:24%;top:42%"><span>United States</span></span><span class="map-dot" style="left:51%;top:28%"><span>Germany</span></span><span class="map-dot" style="left:69%;top:51%"><span>Thailand</span></span><span class="map-dot" style="left:82%;top:70%"><span>Australia</span></span><span class="map-dot" style="left:61%;top:37%"><span>Kazakhstan</span></span></div><div><p class="mono">Export markets</p><div class="country-list" id="countryList"></div></div></div></div></section>
-      <section><div class="container"><div class="person-grid"><div class="portrait"><span>Chenjiaming<br>portrait to be added</span></div><div><p class="mono">06 / Your direct contact</p><h2>One person for the details that move a project forward.</h2><p class="role">Chenjiaming / Sales Manager at YOFER</p><p>I’m Chenjiaming, Sales Manager at YOFER. I work with international customers looking for original-design automotive body kits. From model selection and product details to production communication and shipment coordination, I provide direct support throughout the process.</p><a class="button-primary" href="#about" data-route="about">Meet Chenjiaming ↗</a></div></div></div></section>
-      <section class="contact-band"><div class="container"><div class="contact-grid"><div><p class="mono">07 / Start a conversation</p><h2>Tell us which model you’re building.</h2></div><div class="contact-links"><a class="contact-link" href="https://wa.me/8613059352142" target="_blank"><span>Chat on WhatsApp</span><small>+86 130 5935 2142 ↗</small></a><a class="contact-link" href="mailto:jiaming030518@gmail.com"><span>Send an email</span><small>jiaming030518@gmail.com ↗</small></a><a class="contact-link" href="#contact" data-route="contact"><span>WeChat / Book a meeting</span><small>Ccc_362573 ↗</small></a></div></div></div></section>
+      <section><div class="container"><div class="section-head"><div><h2>Original design.<br>Global reach.</h2></div><p>YOFER creates model-specific automotive body kits with a clear point of view, then supports customers from first selection to shipment.</p></div><div class="intro-grid"><p class="intro-statement">A sharper silhouette for drivers who want their vehicle to feel unmistakably theirs.</p><div><p class="intro-copy">Our work combines original styling, reliable PP material and direct communication. No layers between you and the person managing your project.</p><div class="stat-row"><div class="stat"><strong>2017</strong><span>Founded</span></div><div class="stat"><strong>2,200 m²</strong><span>Factory</span></div><div class="stat"><strong>3,000 m²</strong><span>Warehouse</span></div></div></div></div></div></section>
+      <section class="featured"><div class="container"><div class="section-head"><div><p class="mono">Featured model</p><h2>One kit.<br>A complete direction.</h2></div><a class="button-secondary" href="#catalog" data-route="catalog">View full catalog ↗</a></div><div class="model-grid" id="featuredModels"></div></div></section>
+      <section class="kit-overview"><div class="container"><div class="section-head"><div><h2>See the stance change.</h2></div><p>Drag across the image to compare the Tesla Model Y Juniper 2025+ before and after the YOFER Dragon Flame PRO installation.</p></div><div class="compare-shell kit-compare"><img src="assets/model-y-before.png" alt="Tesla Model Y Juniper before YOFER body kit installation"><div class="compare-after" id="compareAfter"><img src="assets/model-y-after.jpg" alt="Tesla Model Y Juniper after YOFER body kit installation"></div><span class="compare-label after">AFTER / YOFER KIT</span><span class="compare-label before">BEFORE / STOCK</span><input class="compare-range" id="compareRange" type="range" min="10" max="90" value="52" aria-label="Compare before and after images"><span class="compare-handle" id="compareHandle">↔</span></div><div class="kit-caption"><span>Drag to compare</span><span>Model Y Juniper 2025+ · Dragon Flame PRO</span></div></div></section>
+      <section><div class="container"><div class="section-head"><div><h2>Built for a direct<br>conversation.</h2></div><p>Every project stays close to the details that matter: shape, fitment, packaging and timing.</p></div><div class="adv-grid"><div class="adv"><span class="adv-num">01</span><h3>Professional Exterior Design</h3><p>Original styling developed around each model’s proportions.</p></div><div class="adv"><span class="adv-num">02</span><h3>PP Material</h3><p>Durable, practical material for everyday road use.</p></div><div class="adv"><span class="adv-num">03</span><h3>Model-specific Fitment</h3><p>Designed around exact model generations and body lines.</p></div><div class="adv"><span class="adv-num">04</span><h3>Multiple Styling Options</h3><p>Choose a complete look or individual components.</p></div><div class="adv"><span class="adv-num">05</span><h3>Global Export Experience</h3><p>Packaging and shipment support for international markets.</p></div><div class="adv"><span class="adv-num">06</span><h3>Direct Sales Support</h3><p>Chenjiaming stays close from selection to delivery.</p></div></div></div></section>
+      <section class="company-band"><div class="container"><div class="company-grid"><div><p class="mono">Designed and manufactured</p><h2>Designed in Guangzhou.<br>Delivered worldwide.</h2></div><div><p class="company-copy">YOFER is an original-design automotive body kit company based in Guangzhou, China. We support product development, production, warehousing and export with a compact, responsive team.</p><div class="company-facts"><div class="fact"><strong>PP</strong><span>Main material</span></div><div class="fact"><strong>20+</strong><span>Export markets</span></div><div class="fact"><strong>2017</strong><span>Established</span></div><div class="fact"><strong>Direct</strong><span>Sales support</span></div></div></div></div><div class="export-wrap"><div class="world-map" aria-label="Export market map"><span class="map-dot" style="left:24%;top:42%"><span>United States</span></span><span class="map-dot" style="left:51%;top:28%"><span>Germany</span></span><span class="map-dot" style="left:69%;top:51%"><span>Thailand</span></span><span class="map-dot" style="left:82%;top:70%"><span>Australia</span></span><span class="map-dot" style="left:61%;top:37%"><span>Kazakhstan</span></span></div><div><p class="mono">Export markets</p><div class="country-list" id="countryList"></div></div></div></div></section>
+      <section><div class="container"><div class="person-grid"><div class="portrait"><span>Chenjiaming<br>portrait to be added</span></div><div><h2>One person for the details that move a project forward.</h2><p class="role">Chenjiaming / Sales Manager at YOFER</p><p>I’m Chenjiaming, Sales Manager at YOFER. I work with international customers looking for original-design automotive body kits. From model selection and product details to production communication and shipment coordination, I provide direct support throughout the process.</p><a class="button-primary" href="#about" data-route="about">Meet Chenjiaming ↗</a></div></div></div></section>
+      <section class="contact-band"><div class="container"><div class="contact-grid"><div><h2>Tell us which model you’re building.</h2></div><div class="contact-links"><a class="contact-link" href="https://wa.me/8613059352142" target="_blank"><span>Chat on WhatsApp</span><small>+86 130 5935 2142 ↗</small></a><a class="contact-link" href="mailto:jiaming030518@gmail.com"><span>Send an email</span><small>jiaming030518@gmail.com ↗</small></a><a class="contact-link" href="#contact" data-route="contact"><span>WeChat / Book a meeting</span><small>Ccc_362573 ↗</small></a></div></div></div></section>
     </div>
 
-    <div class="page-view" id="catalogView"><section><div class="container"><div class="section-head"><div><p class="mono">Product Catalog</p><h2>Choose a brand.<br>Find your model.</h2></div><p>Explore model-specific body kits and styling options. No prices or online ordering — just the details you need to start a conversation.</p></div><div class="model-grid" id="catalogModels"></div></div></section></div>
+    <div class="page-view" id="catalogView"><section><div class="container"><div class="section-head"><div><p class="mono">Product Catalog</p><h2>Choose a brand.<br>Find your model.</h2></div><p>Explore model-specific body kits and styling options. No prices or online ordering, just the details you need to start a conversation.</p></div><div class="model-grid" id="catalogModels"></div></div></section></div>
     <div class="page-view" id="aboutView"><section><div class="container"><div class="person-grid"><div class="portrait"><span>Chenjiaming<br>portrait to be added</span></div><div><p class="mono">About Me</p><h2>Your direct contact at YOFER.</h2><p class="role">Chenjiaming / Sales Manager at YOFER</p><p>I’m Chenjiaming, Sales Manager at YOFER. I work with international customers looking for original-design automotive body kits. From model selection and product details to production communication and shipment coordination, I provide direct support throughout the process.</p><div class="adv-grid" style="margin-top:40px"><div class="adv"><h3>Product detail support</h3></div><div class="adv"><h3>Overseas customer communication</h3></div><div class="adv"><h3>Production follow-up</h3></div><div class="adv"><h3>Shipment coordination</h3></div></div></div></div></div></section></div>
     <div class="page-view" id="companyView"><section class="company-band"><div class="container"><div class="company-grid"><div><p class="mono">Company</p><h2>Designed in Guangzhou.<br>Delivered worldwide.</h2></div><div><p class="company-copy">YOFER was founded in 2017 in Guangzhou, China. Our 2,200 m² factory and 3,000 m² warehouse support original design development, model fitment, PP body kit production, storage and export.</p><div class="company-facts"><div class="fact"><strong>2,200 m²</strong><span>Factory</span></div><div class="fact"><strong>3,000 m²</strong><span>Warehouse</span></div><div class="fact"><strong>PP</strong><span>Main material</span></div><div class="fact"><strong>Global</strong><span>Export support</span></div></div></div></div><div class="export-wrap"><div class="world-map"><span class="map-dot" style="left:24%;top:42%"><span>United States</span></span><span class="map-dot" style="left:51%;top:28%"><span>Germany</span></span><span class="map-dot" style="left:69%;top:51%"><span>Thailand</span></span><span class="map-dot" style="left:82%;top:70%"><span>Australia</span></span><span class="map-dot" style="left:61%;top:37%"><span>Kazakhstan</span></span></div><div><p class="mono">Export markets</p><div class="country-list" id="countryListCompany"></div></div></div></div></section></div>
-    <div class="page-view" id="contactView"><section class="contact-band"><div class="container"><div class="contact-grid"><div><p class="mono">Contact</p><h2>Let’s make the next project clear.</h2><p style="max-width:400px;margin-top:28px">Share your model, target market or product questions directly with Chenjiaming.</p></div><div><div class="contact-links"><a class="contact-link" href="https://wa.me/8613059352142" target="_blank"><span>Chat on WhatsApp</span><small>+86 130 5935 2142 ↗</small></a><a class="contact-link" href="tel:+8613059352142"><span>Phone</span><small>+86 130 5935 2142 ↗</small></a><a class="contact-link" href="mailto:jiaming030518@gmail.com"><span>Send an email</span><small>jiaming030518@gmail.com ↗</small></a><a class="contact-link" href="#"><span>WeChat</span><small>Ccc_362573 ↗</small></a><a class="contact-link" href="mailto:jiaming030518@gmail.com?subject=YOFER%20meeting"><span>Book a meeting</span><small>Email Chenjiaming ↗</small></a></div><div class="qr-grid"><div class="qr-card"><img src="assets/whatsapp-qr.jpg" alt="WhatsApp QR code"><strong>WhatsApp</strong><span>Scan to start a chat</span></div><div class="qr-card"><img src="assets/wechat-qr.jpg" alt="WeChat QR code"><strong>WeChat</strong><span>Ccc_362573</span></div><div class="contact-logo"><img src="assets/yofer-logo.jpg" alt="YOFER Innovative Body Kit"></div></div></div></div></div></section></div>
+    <div class="page-view" id="contactView"><section class="contact-band"><div class="container"><div class="contact-grid"><div><p class="mono">Contact</p><h2>Let’s make the next project clear.</h2><p style="max-width:400px;margin-top:28px">Share your model, target market or product questions directly with Chenjiaming.</p></div><div><div class="contact-links"><a class="contact-link" href="https://wa.me/8613059352142" target="_blank"><span>Chat on WhatsApp</span><small>+86 130 5935 2142 ↗</small></a><a class="contact-link" href="tel:+8613059352142"><span>Phone</span><small>+86 130 5935 2142 ↗</small></a><a class="contact-link" href="mailto:jiaming030518@gmail.com"><span>Send an email</span><small>jiaming030518@gmail.com ↗</small></a><a class="contact-link" href="#"><span>WeChat</span><small>Ccc_362573 ↗</small></a><a class="contact-link" href="mailto:jiaming030518@gmail.com?subject=YOFER%20meeting"><span>Book a meeting</span><small>Email Chenjiaming ↗</small></a></div><div class="qr-grid"><div class="qr-card"><img src="assets/whatsapp-qr.jpg" alt="WhatsApp QR code"><strong>WhatsApp</strong><span>Scan to start a chat</span></div><div class="qr-card"><img src="assets/wechat-qr.jpg" alt="WeChat QR code"><strong>WeChat</strong><span>Ccc_362573</span></div><div class="contact-logo"><span class="contact-wordmark-name">YOFER</span><span class="contact-wordmark-tagline">INNOVATIVE BODY KIT</span></div></div></div></div></div></section></div>
     <div class="page-view" id="modelView"><section class="model-hero"><div class="container"><a class="back-link" href="#catalog" data-route="catalog">← Back to catalog</a><div class="model-hero-grid"><div><p class="mono" id="modelBrand"></p><h1 id="modelName"></h1><div class="model-meta" id="modelMeta"></div></div><div class="model-image"><img id="modelMainImage" alt=""></div></div></div></section><section><div class="container"><div class="section-head"><div><p class="mono">Styling options</p><h2>Choose your look.</h2></div><p>Each style is shown as a complete direction. Individual components can also be discussed separately.</p></div><div class="style-nav" id="styleNav"></div><div id="stylePanels"></div></div></section><section class="featured"><div class="container"><div class="section-head"><div><p class="mono">Product contact</p><h2>Ask about this product.</h2></div><p>Send the model and style you are interested in. We will reply with fitment, packaging and lead-time details.</p></div><div class="contact-links" style="max-width:620px"><a class="contact-link" href="https://wa.me/8613059352142" target="_blank"><span>Chat on WhatsApp</span><small>+86 130 5935 2142 ↗</small></a><a class="contact-link" href="mailto:jiaming030518@gmail.com?subject=YOFER%20DESIGN%20Dragon%20Flame%20PRO"><span>Send an email</span><small>jiaming030518@gmail.com ↗</small></a></div></div></section></div>
   </main>
   <footer><div class="container footer-row"><span>© 2025 YOFER / Innovative Body Kit</span><span>Guangzhou, China · Direct sales support</span></div></footer>
@@ -78,32 +435,75 @@
       rearSpoiler: 'assets/model-y-juniper-rear-spoiler.jpg'
     };
     const catalog = [
-      {brand:'Tesla', models:[{slug:'tesla-model-y-juniper',name:'Model Y Juniper',year:'2025+',image:img.hero,type:'Full Body Kit',styles:[{name:'Dragon Flame PRO',hero:img.kitOverview,components:[['Front Lip',img.frontLip],['Side Skirts',img.sideSkirts],['Rear Lip',img.rearLip],['Rear Spoiler',img.rearSpoiler]]}]}]},
-      {brand:'Honda',models:[]},
-      {brand:'Toyota',models:[]},
-      {brand:'Zeekr',models:[]},
-      {brand:'Li Auto',models:[]},
-      {brand:'Xiaomi',models:[]}
+      {brand:'Tesla',models:[
+        {slug:'tesla-model-y-2020-2024',name:'Model Y',year:'2020-2024'},
+        {slug:'tesla-model-y-juniper',name:'Model Y Juniper',year:'2025+',image:img.hero,type:'Full Body Kit',hasDetail:true,styles:[{name:'Dragon Flame PRO',hero:img.kitOverview,components:[['Front Lip',img.frontLip],['Side Skirts',img.sideSkirts],['Rear Lip',img.rearLip],['Rear Spoiler',img.rearSpoiler]]}]},
+        {slug:'tesla-model-y-l',name:'Model Y L',year:''},
+        {slug:'tesla-model-3-2019-2022',name:'Model 3',year:'2019-2022'},
+        {slug:'tesla-model-3-2023-2026',name:'Model 3',year:'2023-2026'},
+        {slug:'tesla-model-x-2016-2020',name:'Model X',year:'2016-2020'},
+        {slug:'tesla-model-s-2016-2020',name:'Model S',year:'2016-2020'}
+      ]},
+      {brand:'Honda',models:[
+        {slug:'honda-accord-2018-2022',name:'Accord',year:'2018-2022'},
+        {slug:'honda-accord-2023-2026',name:'Accord',year:'2023-2026'},
+        {slug:'honda-civic-2022-2024',name:'Civic',year:'2022-2024'},
+        {slug:'honda-civic-2025',name:'Civic',year:'2025+'}
+      ]},
+      {brand:'Toyota',models:[
+        {slug:'toyota-camry-2018-2020',name:'Camry',year:'2018-2020'},
+        {slug:'toyota-camry-2021-2024',name:'Camry',year:'2021-2024'},
+        {slug:'toyota-9th-camry-2025',name:'9th Camry',year:'2025+'}
+      ]},
+      {brand:'Zeekr',models:[
+        {slug:'zeekr-009',name:'009',year:''},
+        {slug:'zeekr-001',name:'001',year:''},
+        {slug:'zeekr-7x',name:'7X',year:''},
+        {slug:'zeekr-007-gt',name:'007 GT',year:''},
+        {slug:'zeekr-x',name:'X',year:''},
+        {slug:'zeekr-9x',name:'9X',year:''}
+      ]},
+      {brand:'Li Auto',models:[
+        {slug:'li-auto-l6',name:'Li Auto L6',year:''},
+        {slug:'li-auto-l7',name:'Li Auto L7',year:''},
+        {slug:'li-auto-l9',name:'Li Auto L9',year:''}
+      ]},
+      {brand:'Xiaomi',models:[
+        {slug:'xiaomi-yu7',name:'YU7',year:''}
+      ]}
     ];
     const countries=['United States','Canada','Mexico','Turkey','Kazakhstan','Uzbekistan','Russia','Ukraine','Romania','Germany','United Kingdom','France','Sweden','Finland','Thailand','Philippines','Cambodia','Malaysia','Singapore','Australia'];
     const state={lang:'en',slide:0,model:null};
     const t=(en,zh)=>state.lang==='en'?en:zh;
-    function allModels(){return catalog.flatMap(b=>b.models.map(m=>({...m,brand:b.brand})))}
-    function renderHero(){const slides=allModels();const frame=document.getElementById('heroFrame');const controls=slides.length>1?`<div class="hero-controls"><button class="hero-arrow" id="prevSlide">←</button><div class="dots">${slides.map((_,i)=>`<button class="dot ${i===state.slide?'active':''}" data-slide="${i}" aria-label="Slide ${i+1}"></button>`).join('')}</div><button class="hero-arrow" id="nextSlide">→</button></div>`:'';frame.innerHTML=slides.map((m,i)=>`<article class="hero-slide ${i===state.slide?'active':''}"><img src="${m.image}" alt="YOFER ${m.brand} ${m.name} body kit"><div class="hero-copy"><p class="mono eyebrow">YOFER / ${m.brand}</p><h1>${t('Original Design, Serving Customers Worldwide','原创设计，服务全球客户')}</h1><p>${t('YOFER specializes in original-design automotive body kits, supplying products for global automotive markets.','YOFER 专注于原创设计的汽车外观套件，为全球汽车市场提供产品。')}</p><div class="hero-meta"><span class="tag">${m.name} ${m.year}</span><span class="tag">${m.type}</span></div><a class="button-primary" href="#model=${m.slug}" data-route="model" data-slug="${m.slug}">${t('View model','查看车型')} ↗</a></div></article>`).join('')+controls+`<span class="hero-note">${t('YOFER Model Y Juniper 2025+','YOFER 焕新 Y 2025+')}</span>`;if(slides.length>1){document.getElementById('prevSlide').onclick=()=>setSlide((state.slide+slides.length-1)%slides.length);document.getElementById('nextSlide').onclick=()=>setSlide((state.slide+1)%slides.length);frame.querySelectorAll('[data-slide]').forEach(b=>b.onclick=()=>setSlide(+b.dataset.slide))}frame.onmouseenter=()=>state.pause=true;frame.onmouseleave=()=>state.pause=false;frame.querySelectorAll('[data-route]').forEach(bindRoute)}
+    function allCatalogModels(){return catalog.flatMap(b=>b.models.map(m=>({...m,brand:b.brand})))}
+    function allModels(){return allCatalogModels().filter(m=>m.hasDetail)}
+    function renderHero(){const slides=allModels();const frame=document.getElementById('heroFrame');const controls=slides.length>1?`<div class="hero-controls"><button class="hero-arrow" id="prevSlide">←</button><div class="dots">${slides.map((_,i)=>`<button class="dot ${i===state.slide?'active':''}" data-slide="${i}" aria-label="Slide ${i+1}"></button>`).join('')}</div><button class="hero-arrow" id="nextSlide">→</button></div>`:'';frame.innerHTML=slides.map((m,i)=>`<article class="hero-slide ${i===state.slide?'active':''}"><img src="${m.image}" alt="YOFER ${m.brand} ${m.name} body kit"><div class="hero-copy"><p class="mono eyebrow">YOFER / ${m.brand} / ${m.name} ${m.year}</p><h1>${t('Original Design,<br>Serving Customers <wbr>Worldwide','原创设计<br>服务全球客户')}</h1><p>${t('YOFER specializes in original-design automotive body kits, supplying products for global automotive markets.','YOFER 专注于原创设计的汽车外观套件，为全球汽车市场提供产品。')}</p><a class="button-primary" href="#model=${m.slug}" data-route="model" data-slug="${m.slug}">${t('View model','查看车型')} ↗</a></div></article>`).join('')+controls;if(slides.length>1){document.getElementById('prevSlide').onclick=()=>setSlide((state.slide+slides.length-1)%slides.length);document.getElementById('nextSlide').onclick=()=>setSlide((state.slide+1)%slides.length);frame.querySelectorAll('[data-slide]').forEach(b=>b.onclick=()=>setSlide(+b.dataset.slide))}frame.onmouseenter=()=>state.pause=true;frame.onmouseleave=()=>state.pause=false;frame.querySelectorAll('[data-route]').forEach(bindRoute)}
     function setSlide(i){state.slide=i;renderHero()}
-    function modelCard(m){return `<article class="model-card"><img src="${m.image}" alt="YOFER ${m.brand} ${m.name} body kit"><div class="model-card-body"><p class="mono">${m.brand}</p><h3>${m.name}</h3><p>${m.year} · ${m.type}</p><a class="card-link" href="#model=${m.slug}" data-route="model" data-slug="${m.slug}">${t('Open model','查看车型')} ↗</a></div></article>`}
-    function renderModels(){document.getElementById('featuredModels').innerHTML=allModels().slice(0,3).map(modelCard).join('');document.getElementById('catalogModels').innerHTML=allModels().map(modelCard).join('');document.querySelectorAll('[data-route]').forEach(bindRoute)}
+    function modelCard(m){return `<article class="model-card"><img src="${m.image}" alt="YOFER ${m.brand} ${m.name} body kit"><div class="model-card-body"><p class="mono">${m.brand}</p><h3>${m.name}</h3><p>${m.year} · ${m.type}</p><a class="card-link" href="#model=${m.slug}" data-route="model" data-slug="${m.slug}">${t('View model','查看车型')} ↗</a></div></article>`}
+    function catalogBrandCard(brand){const modelCount=brand.models.length;const entries=brand.models.map(model=>{const meta=model.year?`<small>${model.year}</small>`:'';const inner=`<span><strong>${model.name}</strong>${meta}</span>`;return model.hasDetail?`<a class="brand-catalog-model ready" href="#model=${model.slug}" data-route="model" data-slug="${model.slug}">${inner}<b>View details <span aria-hidden="true">&#8599;</span></b></a>`:`<div class="brand-catalog-model">${inner}</div>`}).join('');return `<article class="brand-catalog-card"><div class="brand-catalog-head"><p class="mono">Brand / ${brand.brand}</p><h3>${brand.brand}</h3><span>${modelCount} vehicle model${modelCount===1?'':'s'}</span></div><div class="brand-catalog-list">${entries}</div></article>`}
+    function renderModels(){document.getElementById('featuredModels').innerHTML=allModels().slice(0,3).map(modelCard).join('');document.getElementById('catalogModels').innerHTML=catalog.map(catalogBrandCard).join('');document.querySelectorAll('[data-route]').forEach(bindRoute)}
     function renderCountries(id){const el=document.getElementById(id);if(el)el.innerHTML=countries.map(c=>`<span class="country">${c}</span>`).join('')}
     function renderCatalogMenu(){const menu=document.getElementById('catalogMenu');menu.innerHTML=catalog.map((b,i)=>`<div class="catalog-brand" data-brand="${i}"><h4>${b.brand}</h4><p>${b.models.length} model${b.models.length>1?'s':''}</p><div class="catalog-models">${b.models.map(m=>`<button data-route="model" data-slug="${m.slug}">${m.name} ${m.year} ↗</button>`).join('')}</div></div>`).join('');menu.querySelectorAll('.catalog-brand').forEach(card=>card.onclick=()=>{menu.querySelectorAll('.catalog-brand').forEach(c=>c.classList.remove('active'));card.classList.add('active')});menu.querySelectorAll('[data-route]').forEach(bindRoute)}
-    function renderModel(slug){const m=allModels().find(x=>x.slug===slug)||allModels()[0];state.model=m;document.getElementById('modelBrand').textContent=`${m.brand} / ${m.type}`;document.getElementById('modelName').innerHTML=m.name==='Model Y Juniper'?'YOFER DESIGN<br>Dragon Flame PRO':m.name;document.getElementById('modelMainImage').src=m.image;document.getElementById('modelMainImage').alt=`YOFER ${m.brand} ${m.name}`;document.getElementById('modelMeta').innerHTML=`<span class="tag">${m.year}</span><span class="tag">${m.type}</span><span class="tag">${m.styles?.length||1} styling option${(m.styles?.length||1)>1?'s':''}</span>`;const styles=m.styles||[{name:'Current development',hero:m.image,components:[['Full view',m.image]]}];document.getElementById('styleNav').innerHTML=styles.map((s,i)=>`<button class="style-btn ${i===0?'active':''}" data-style="${i}">Style ${String.fromCharCode(65+i)}</button>`).join('');document.getElementById('stylePanels').innerHTML=styles.map((s,i)=>`<div class="style-panel ${i===0?'active':''}" data-panel="${i}"><img src="${s.hero}" alt="${s.name} complete product overview" style="height:430px;margin-bottom:22px;object-fit:contain;background:#f4f4f1"><div class="component-grid">${s.components.map(c=>`<div class="component"><img src="${c[1]}" alt="${c[0]} on YOFER Model Y Juniper"><span>${c[0]}</span></div>`).join('')}</div><div class="detail-grid"><div class="detail-list"><div class="detail-item"><span>Material</span><span>PP</span></div><div class="detail-item"><span>Fitment</span><span>${m.name} ${m.year}</span></div><div class="detail-item"><span>MOQ</span><span>Contact for details</span></div></div><div class="detail-list"><div class="detail-item"><span>Lead time</span><span>Confirm with sales</span></div><div class="detail-item"><span>Packaging</span><span>Export carton</span></div><div class="detail-item"><span>Customization</span><span>Discuss with YOFER</span></div></div></div><div class="compare-shell" style="margin-top:30px;height:420px"><img src="assets/model-y-before.png" alt="Tesla Model Y Juniper before YOFER body kit installation"><div class="compare-after"><img src="assets/model-y-after.jpg" alt="Tesla Model Y Juniper after YOFER body kit installation"></div><span class="compare-label after">AFTER / YOFER KIT</span><span class="compare-label before">BEFORE / STOCK</span><input class="compare-range" type="range" min="10" max="90" value="52" aria-label="Compare before and after images"><span class="compare-handle">↔</span></div><div class="placeholder-note">Installation video can be added when source material is provided. The Before & After comparison above uses the supplied before and after images.</div></div>`).join('');document.querySelectorAll('.style-btn').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.style-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.style-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.querySelector(`[data-panel="${btn.dataset.style}"]`).classList.add('active')});initAllCompares(document.getElementById('stylePanels'))}
+    function renderModel(slug){const m=allModels().find(x=>x.slug===slug)||allModels()[0];state.model=m;document.getElementById('modelBrand').textContent=`${m.brand} / ${m.type}`;document.getElementById('modelName').innerHTML=m.name==='Model Y Juniper'?'YOFER DESIGN<br>Dragon Flame PRO':m.name;document.getElementById('modelMainImage').src=m.image;document.getElementById('modelMainImage').alt=`YOFER ${m.brand} ${m.name}`;document.getElementById('modelMeta').innerHTML=`<span class="tag">${m.year}</span><span class="tag">${m.type}</span><span class="tag">${m.styles?.length||1} styling option${(m.styles?.length||1)>1?'s':''}</span>`;const styles=m.styles||[{name:'Current development',hero:m.image,components:[['Full view',m.image]]}];document.getElementById('styleNav').innerHTML=styles.map((s,i)=>`<button class="style-btn ${i===0?'active':''}" data-style="${i}">Style ${String.fromCharCode(65+i)}</button>`).join('');document.getElementById('stylePanels').innerHTML=styles.map((s,i)=>`<div class="style-panel ${i===0?'active':''}" data-panel="${i}"><img src="${s.hero}" alt="${s.name} complete product overview" style="height:430px;margin-bottom:22px;object-fit:contain;background:#f4f4f1"><div class="component-grid">${s.components.map(c=>`<div class="component"><img src="${c[1]}" alt="${c[0]} on YOFER Model Y Juniper"><span>${c[0]}</span></div>`).join('')}</div><div class="detail-grid"><div class="detail-list"><div class="detail-item"><span>Material</span><span>PP</span></div><div class="detail-item"><span>Fitment</span><span>${m.name} ${m.year}</span></div><div class="detail-item"><span>MOQ</span><span>Contact for details</span></div></div><div class="detail-list"><div class="detail-item"><span>Lead time</span><span>Confirm with sales</span></div><div class="detail-item"><span>Packaging</span><span>Export carton</span></div><div class="detail-item"><span>Customization</span><span>Discuss with YOFER</span></div></div></div><div class="compare-shell" style="margin-top:30px"><img src="assets/model-y-before.png" alt="Tesla Model Y Juniper before YOFER body kit installation"><div class="compare-after"><img src="assets/model-y-after.jpg" alt="Tesla Model Y Juniper after YOFER body kit installation"></div><span class="compare-label after">AFTER / YOFER KIT</span><span class="compare-label before">BEFORE / STOCK</span><input class="compare-range" type="range" min="10" max="90" value="52" aria-label="Compare before and after images"><span class="compare-handle">↔</span></div><div class="placeholder-note">Installation video can be added when source material is provided. The Before & After comparison above uses the supplied before and after images.</div></div>`).join('');document.querySelectorAll('.style-btn').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.style-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.style-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.querySelector(`[data-panel="${btn.dataset.style}"]`).classList.add('active')});initAllCompares(document.getElementById('stylePanels'))}
     function initCompare(shell){if(!shell||shell.dataset.compareReady)return;shell.dataset.compareReady='true';const after=shell.querySelector('.compare-after');const handle=shell.querySelector('.compare-handle');const range=shell.querySelector('.compare-range');let dragging=false;const update=value=>{const clamped=Math.max(10,Math.min(90,value));after.style.width=clamped+'%';after.querySelector('img').style.width=`${10000/clamped}%`;handle.style.left=clamped+'%';if(range)range.value=clamped};const updateFromX=clientX=>{const box=shell.getBoundingClientRect();update(((clientX-box.left)/box.width)*100)};const stop=()=>{dragging=false;document.body.style.cursor=''};if(range)range.addEventListener('input',()=>update(range.value));shell.querySelectorAll('img').forEach(image=>image.draggable=false);shell.addEventListener('dragstart',e=>e.preventDefault());shell.addEventListener('mousedown',e=>{if(e.button!==0)return;e.preventDefault();dragging=true;document.body.style.cursor='ew-resize';updateFromX(e.clientX)});document.addEventListener('mousemove',e=>{if(dragging)updateFromX(e.clientX)});document.addEventListener('mouseup',stop);window.addEventListener('blur',stop);shell.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;e.preventDefault();dragging=true;shell.setPointerCapture?.(e.pointerId);updateFromX(e.clientX)});shell.addEventListener('pointermove',e=>{if(dragging&&e.pointerType!=='mouse')updateFromX(e.clientX)});shell.addEventListener('pointerup',stop);shell.addEventListener('pointercancel',stop);shell.addEventListener('click',e=>updateFromX(e.clientX))}
-    function initAllCompares(scope=document){scope.querySelectorAll('.compare-shell').forEach(initCompare)}
+    const modelYIceGrayGallery=[
+      {src:'assets/model-y-juniper-ice-gray-02.webp',alt:'YOFER Dragon Flame PRO on ice gray Tesla Model Y Juniper, front view',label:'FRONT VIEW'},
+      {src:'assets/model-y-juniper-ice-gray-05.webp',alt:'YOFER Dragon Flame PRO on ice gray Tesla Model Y Juniper, front three-quarter view',label:'FRONT THREE-QUARTER'},
+      {src:'assets/model-y-juniper-ice-gray-04.webp',alt:'YOFER Dragon Flame PRO on ice gray Tesla Model Y Juniper, side view',label:'SIDE PROFILE'},
+      {src:'assets/model-y-juniper-ice-gray-03.webp',alt:'YOFER Dragon Flame PRO on ice gray Tesla Model Y Juniper, rear view',label:'REAR VIEW'},
+      {src:'assets/model-y-juniper-ice-gray-01.webp',alt:'YOFER Dragon Flame PRO on ice gray Tesla Model Y Juniper, rear three-quarter view',label:'REAR THREE-QUARTER'},
+    ];
+    function initModelGalleries(scope=document){if(state.model?.slug!=='tesla-model-y-juniper')return;scope.querySelectorAll('.style-panel').forEach(panel=>{if(panel.dataset.galleryReady)return;const overview=panel.querySelector('img[alt$="complete product overview"]');if(!overview)return;panel.dataset.galleryReady='true';const gallery=document.createElement('div');gallery.className='style-gallery';gallery.tabIndex=0;gallery.setAttribute('role','region');gallery.setAttribute('aria-label','Model Y Juniper vehicle detail image gallery');const stage=document.createElement('div');stage.className='style-gallery-stage';const meta=document.createElement('span');meta.className='style-gallery-meta';const nav=document.createElement('div');nav.className='style-gallery-nav';const caption=document.createElement('span');caption.className='style-gallery-caption';const dots=document.createElement('div');dots.className='style-gallery-dots';const slides=[];const dotButtons=[];let active=0;const select=index=>{active=(index+modelYIceGrayGallery.length)%modelYIceGrayGallery.length;slides.forEach((slide,slideIndex)=>{const selected=slideIndex===active;slide.classList.toggle('active',selected);slide.setAttribute('aria-hidden',selected?'false':'true')});dotButtons.forEach((dot,dotIndex)=>{const selected=dotIndex===active;dot.classList.toggle('active',selected);dot.setAttribute('aria-current',selected?'true':'false')});meta.textContent=(active+1)+' / '+modelYIceGrayGallery.length;caption.textContent=modelYIceGrayGallery[active].label};modelYIceGrayGallery.forEach((image,index)=>{const slide=document.createElement('img');slide.className='style-gallery-slide'+(index===0?' active':'');slide.src=image.src;slide.alt=image.alt;slide.decoding='async';slide.setAttribute('aria-hidden',index===0?'false':'true');if(index>0)slide.loading='lazy';slides.push(slide);stage.append(slide);const dot=document.createElement('button');dot.className='style-gallery-dot'+(index===0?' active':'');dot.type='button';dot.setAttribute('aria-label','Show image '+(index+1)+' of '+modelYIceGrayGallery.length);dot.setAttribute('aria-current',index===0?'true':'false');dot.addEventListener('click',()=>select(index));dotButtons.push(dot);dots.append(dot)});const previous=document.createElement('button');previous.className='style-gallery-control prev';previous.type='button';previous.textContent='‹';previous.setAttribute('aria-label','Previous vehicle image');previous.addEventListener('click',()=>select(active-1));const next=document.createElement('button');next.className='style-gallery-control next';next.type='button';next.textContent='›';next.setAttribute('aria-label','Next vehicle image');next.addEventListener('click',()=>select(active+1));stage.append(previous,next,meta);nav.append(caption,dots);gallery.append(stage,nav);gallery.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();select(active-1)}else if(event.key==='ArrowRight'){event.preventDefault();select(active+1)}});overview.replaceWith(gallery);select(0)})}
+    function initAllCompares(scope=document){initModelGalleries(scope);scope.querySelectorAll('.compare-shell').forEach(initCompare)}
     function bindRoute(el){if(el.dataset.routeBound)return;el.dataset.routeBound='true';el.addEventListener('click',e=>{e.preventDefault();const route=el.dataset.route;const slug=el.dataset.slug;const hash=route==='model'?`#model=${slug}`:`#${route}`;history.pushState({},'',hash);showRoute()})}
     function showRoute(){const hash=location.hash||'#home';document.querySelectorAll('.page-view').forEach(v=>v.classList.remove('active'));if(hash.startsWith('#model=')){document.getElementById('modelView').classList.add('active');renderModel(hash.split('=')[1])}else{const route=hash.replace('#','')||'home';const view=document.getElementById(`${route}View`)||document.getElementById('homeView');view.classList.add('active');if(route==='home')renderHero()}window.scrollTo({top:0,behavior:'smooth'});document.getElementById('catalogMenu').classList.remove('open');document.getElementById('mobileNav').style.display='none'}
     document.getElementById('catalogTrigger').onclick=()=>document.getElementById('catalogMenu').classList.toggle('open');document.getElementById('langBtn').onclick=()=>{state.lang=state.lang==='en'?'zh':'en';document.getElementById('langBtn').innerHTML=state.lang==='en'?'<strong>EN</strong><span>/</span><span>中文</span>':'<span>EN</span><span>/</span><strong>中文</strong>';renderHero();renderModels();if(state.model)renderModel(state.model.slug)};document.getElementById('menuToggle').onclick=()=>{const el=document.getElementById('mobileNav');el.innerHTML='<a href="#home" data-route="home">Home</a><a href="#catalog" data-route="catalog">Product Catalog</a><a href="#about" data-route="about">About Me</a><a href="#company" data-route="company">Company</a><a href="#contact" data-route="contact">Contact</a>';el.style.display=el.style.display==='grid'?'none':'grid';el.style.position='absolute';el.style.top='100px';el.style.left='16px';el.style.right='16px';el.style.background='#fff';el.style.padding='18px';el.style.gap='14px';el.style.border='1px solid var(--line)';el.style.boxShadow='0 15px 35px rgba(0,0,0,.1)';el.querySelectorAll('[data-route]').forEach(bindRoute)};window.onpopstate=showRoute;window.onhashchange=showRoute;
-    function setupCatalogHover(){const trigger=document.getElementById('catalogTrigger');const shell=trigger?.parentElement;const menu=document.getElementById('catalogMenu');if(!trigger||!shell||!menu)return;const desktop=()=>window.matchMedia('(min-width:901px) and (hover:hover)').matches;const setOpen=open=>{menu.classList.toggle('open',open);trigger.setAttribute('aria-expanded',open?'true':'false')};shell.addEventListener('mouseenter',()=>{if(desktop())setOpen(true)});shell.addEventListener('mouseleave',()=>{if(desktop())setOpen(false)});shell.addEventListener('focusin',()=>{if(desktop())setOpen(true)});shell.addEventListener('focusout',()=>setTimeout(()=>{if(desktop()&&!shell.contains(document.activeElement))setOpen(false)},0));trigger.onclick=()=>{if(desktop())return;setOpen(!menu.classList.contains('open'))};setOpen(false)}
+    function setupCatalogHover(){const trigger=document.getElementById('catalogTrigger');const shell=trigger?.closest('.catalog-shell');const menu=document.getElementById('catalogMenu');if(!trigger||!shell||!menu)return;const desktop=()=>window.matchMedia('(min-width:901px) and (hover:hover)').matches;let closeTimer;const cancelClose=()=>{if(closeTimer){clearTimeout(closeTimer);closeTimer=undefined}};const setOpen=open=>{cancelClose();menu.classList.toggle('open',open);trigger.setAttribute('aria-expanded',open?'true':'false')};const closeSoon=()=>{cancelClose();closeTimer=setTimeout(()=>{if(desktop()&&!shell.matches(':hover')&&!shell.contains(document.activeElement))setOpen(false)},220)};shell.addEventListener('mouseenter',()=>{if(desktop())setOpen(true)});shell.addEventListener('mouseleave',()=>{if(desktop())closeSoon()});shell.addEventListener('focusin',()=>setOpen(true));shell.addEventListener('focusout',()=>setTimeout(()=>{if(!shell.contains(document.activeElement))closeSoon()},0));trigger.onclick=()=>{if(desktop())return;setOpen(!menu.classList.contains('open'))};setOpen(false)}
     setupCatalogHover();
     function renderCatalogMenu(){const menu=document.getElementById('catalogMenu');menu.innerHTML=catalog.map((brand,index)=>{const hasModels=brand.models.length>0;return `<div class="catalog-brand ${hasModels?'':'coming-soon'}" data-brand="${index}"><h4>${brand.brand}</h4><p>${hasModels?`${brand.models.length} model${brand.models.length>1?'s':''} available`:'Models coming soon'}</p><div class="catalog-models">${hasModels?brand.models.map(model=>`<button data-route="model" data-slug="${model.slug}">${model.name} ${model.year} ↗</button>`).join(''):'<span style="font-size:.72rem;color:var(--muted)">Product details will be added soon.</span>'}</div></div>`}).join('');menu.querySelectorAll('.catalog-brand').forEach(card=>card.onclick=()=>{menu.querySelectorAll('.catalog-brand').forEach(item=>item.classList.remove('active'));card.classList.add('active')});menu.querySelectorAll('[data-route]').forEach(bindRoute)}
+    function activateCatalogBrand(menu,card){menu.querySelectorAll('.catalog-brand').forEach(item=>{const active=item===card;item.classList.toggle('active',active);item.setAttribute('aria-expanded',active?'true':'false')})}
+    function bindCatalogBrandInteractions(menu){const hoverDesktop=()=>window.matchMedia('(min-width:901px) and (hover:hover)').matches;menu.querySelectorAll('.catalog-brand').forEach(card=>{card.addEventListener('mouseenter',()=>{if(hoverDesktop())activateCatalogBrand(menu,card)});card.addEventListener('focusin',()=>activateCatalogBrand(menu,card));card.addEventListener('click',()=>{if(!hoverDesktop())activateCatalogBrand(menu,card)});card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();activateCatalogBrand(menu,card)}})})}
+    function renderCatalogMenu(){const menu=document.getElementById('catalogMenu');menu.innerHTML=catalog.map((brand,index)=>`<div class="catalog-brand" data-brand="${index}" tabindex="0" role="button" aria-expanded="false"><h4>${brand.brand}</h4><div class="catalog-models">${brand.models.map(model=>{const label=`${model.name}${model.year?` ${model.year}`:''}`;return model.hasDetail?`<button data-route="model" data-slug="${model.slug}">${label} <span aria-hidden="true">&#8599;</span></button>`:`<span class="catalog-model-item">${label}</span>`}).join('')}</div></div>`).join('');bindCatalogBrandInteractions(menu);menu.querySelectorAll('[data-route]').forEach(bindRoute)}
     const marketData={
       'United States':{countryId:'us',models:['tesla-model-y-juniper']},'Canada':{countryId:'ca',models:['tesla-model-y-juniper']},'Mexico':{countryId:'mx',models:['tesla-model-y-juniper']},'Turkey':{countryId:'tr',models:['tesla-model-y-juniper']},'Kazakhstan':{countryId:'kz',models:['tesla-model-y-juniper']},'Uzbekistan':{countryId:'uz',models:['tesla-model-y-juniper']},'Russia':{countryId:'ru',models:['tesla-model-y-juniper']},'Ukraine':{countryId:'ua',models:['tesla-model-y-juniper']},'Romania':{countryId:'ro',models:['tesla-model-y-juniper']},'Germany':{countryId:'de',models:['tesla-model-y-juniper']},'United Kingdom':{countryId:'gb',models:['tesla-model-y-juniper']},'France':{countryId:'fr',models:['tesla-model-y-juniper']},'Sweden':{countryId:'se',models:['tesla-model-y-juniper']},'Finland':{countryId:'fi',models:['tesla-model-y-juniper']},'Thailand':{countryId:'th',models:['tesla-model-y-juniper']},'Philippines':{countryId:'ph',models:['tesla-model-y-juniper']},'Cambodia':{countryId:'kh',models:['tesla-model-y-juniper']},'Malaysia':{countryId:'my',models:['tesla-model-y-juniper']},'Singapore':{countryId:'sg',models:['tesla-model-y-juniper']},'Australia':{countryId:'au',models:['tesla-model-y-juniper']}
     };
@@ -118,7 +518,10 @@
     function initMarketMap(mapId){const map=document.getElementById(mapId);const baseImage=map?.querySelector('.market-map-image');if(!map||!baseImage)return;const ready=()=>{map.classList.add('map-ready');updateMarketMapHighlights()};baseImage.addEventListener('load',ready,{once:true});if(baseImage.complete&&baseImage.naturalWidth)ready()}
     function mountMarketExperience(mapId,listId,resultId){const list=document.getElementById(listId);const wrap=list?.closest('.export-wrap');const map=wrap?.querySelector('.world-map');if(!list||!wrap||!map)return;map.id=mapId;map.classList.add('market-map');map.setAttribute('aria-label','Interactive world export market map');map.innerHTML='<div class="map-toolbar"><span class="map-status">Interactive export map</span><span class="map-status">Choose a country</span></div><div class="market-map-canvas"><img class="market-map-image" src="assets/world.svg" alt="World map showing YOFER export markets" draggable="false"><img class="market-map-highlight" src="assets/market-highlights/us.svg" alt="United States highlighted on the export market map" draggable="false"></div><p class="map-attribution">World map: <a href="https://github.com/VictorCazanave/svg-maps" target="_blank" rel="noreferrer">svg-maps</a> · CC BY 4.0</p>';const panel=list.parentElement;panel.classList.add('market-panel');const hint=document.createElement('p');hint.className='market-instruction';hint.textContent='Choose a country to highlight it on the map and see a featured model.';list.before(hint);const result=document.createElement('div');result.className='market-result';result.id=resultId;result.setAttribute('aria-live','polite');list.after(result);renderMarketCountries(listId);initMarketMap(mapId)}
     function renderChenjiamingPortraits(){const photo='assets/chenjiaming.jpg';document.querySelectorAll('.portrait').forEach(portrait=>{portrait.innerHTML=`<img src="${photo}" alt="Chenjiaming, Sales Manager at YOFER">`});const qrGrid=document.querySelector('#contactView .qr-grid');if(qrGrid&&!qrGrid.querySelector('.contact-person')){const card=document.createElement('div');card.className='contact-person';card.innerHTML=`<img src="${photo}" alt="Chenjiaming, Sales Manager at YOFER"><div class="contact-person-copy"><span>Your direct contact</span><strong>Chenjiaming</strong><small>Sales Manager at YOFER</small></div>`;qrGrid.prepend(card)}}
-    renderChenjiamingPortraits();renderCatalogMenu();renderModels();mountMarketExperience('marketMapHome','countryList','marketResult');mountMarketExperience('marketMapCompany','countryListCompany','marketResultCompany');document.querySelectorAll('.market-result').forEach(result=>{const list=result.parentElement.querySelector('.country-list');if(list)list.before(result)});selectMarket(state.market);renderHero();initAllCompares();setInterval(()=>{const slides=allModels();if(!state.pause&&document.getElementById('homeView').classList.contains('active'))setSlide((state.slide+1)%slides.length)},5500);showRoute();
+    function renderYoferWordmarks(){const wordmark='<svg class="yofer-wordmark" viewBox="0 0 746 166" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><use href="#yofer-wordmark"></use></svg>';document.querySelectorAll('.contact-logo').forEach(logo=>{logo.setAttribute('role','img');logo.setAttribute('aria-label','YOFER Innovative Body Kit');logo.innerHTML=wordmark})}
+    function initReveal(){const items=document.querySelectorAll('#homeView section');if(!('IntersectionObserver' in window)){items.forEach(item=>item.classList.add('is-visible'));return}items.forEach(item=>item.classList.add('reveal'));const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})},{rootMargin:'0px 0px -4% 0px',threshold:.04});items.forEach(item=>observer.observe(item))}
+    renderYoferWordmarks();
+    renderChenjiamingPortraits();renderCatalogMenu();renderModels();mountMarketExperience('marketMapHome','countryList','marketResult');mountMarketExperience('marketMapCompany','countryListCompany','marketResultCompany');document.querySelectorAll('.market-result').forEach(result=>{const list=result.parentElement.querySelector('.country-list');if(list)list.before(result)});selectMarket(state.market);renderHero();initAllCompares();initReveal();setInterval(()=>{const slides=allModels();if(!state.pause&&document.getElementById('homeView').classList.contains('active'))setSlide((state.slide+1)%slides.length)},5500);showRoute();
   </script>
 </body>
 </html>
